@@ -8,7 +8,15 @@ import (
 func AddTodoList(todoList *models.TodoList) error {
 	result := config.DB.Create(&todoList)
 
-	if (result.Error) != nil {
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
+func GetTodoList(newList *[]models.TodoList) error {
+	result := config.DB.Find(&newList)
+	if result.Error != nil {
 		return result.Error
 	}
 	return nil
