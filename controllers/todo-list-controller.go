@@ -71,3 +71,24 @@ func GetTodoListController(c echo.Context) error {
 		Data:    list,
 	})
 }
+
+func UpdateTodoListController(c echo.Context) error {
+	list := models.TodoList{}
+	c.Bind(&list)
+
+	err := repositories.UpdateTodoList(&list)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, models.Response{
+			Message: err.Error(),
+			Status:  http.StatusInternalServerError,
+			Data:    nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, models.Response{
+		Message: "Update data successfully!",
+		Status:  http.StatusOK,
+		Data:    list,
+	})
+}

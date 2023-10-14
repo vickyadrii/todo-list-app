@@ -31,3 +31,12 @@ func GetTodoList(list *models.TodoList) error {
 	}
 	return nil
 }
+
+func UpdateTodoList(list *models.TodoList) error {
+	result := config.DB.Save(&list)
+
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
