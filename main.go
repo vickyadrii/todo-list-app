@@ -14,10 +14,10 @@ func getPort() string {
 }
 
 func main() {
-	// config.LoadEnv()
+	config.LoadEnv()
 	config.InitDB()
 	e := echo.New()
 	routes.TodoListRoutes(e)
-	// e.Logger.Fatal(e.Start(":" + getPort()))
-	e.Start(":45669")
+	e.Logger.Fatal(e.Start(":" + getPort()))
+	// e.Start(":45669")
 }
