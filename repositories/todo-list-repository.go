@@ -42,10 +42,15 @@ func UpdateTodoList(list *models.TodoList) error {
 }
 
 func DeleteTodoList(list *models.TodoList, id string) error {
-    result := config.DB.Delete(&list, id)
+	err := config.DB.First(&list, id).Error
+	if err != nil {
+		return err
+	}
 
-    if result.Error != nil {
-        return result.Error
-    }
-    return nil
+	err = config.DB.Delete(&list, id).Error
+
+	if err != nil {
+		return err
+	}
+	return nil
 }
