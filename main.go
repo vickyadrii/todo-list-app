@@ -11,7 +11,6 @@ import (
 func getPort() string {
 	port := os.Getenv("PORT")
 	if port == "" {
-		// Default to port 8080 if PORT is not set
 		port = "8080"
 	}
 	return port
@@ -23,5 +22,4 @@ func main() {
 	e := echo.New()
 	routes.TodoListRoutes(e)
 	e.Logger.Fatal(e.Start(":" + getPort())) 
-	// e.Start(":45669")
 }
