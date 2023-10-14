@@ -8,7 +8,9 @@ import (
 )
 
 func InitRoutes(e *echo.Echo) {
-	e.Use(middleware.Logger())
+	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
+		Format: "method=${method}, uri=${uri}, status=${status}\n",
+	}))
 	eAuth := e.Group("")
 	eAuth.POST("/lists", controllers.CreateTodoList)
 	eAuth.GET("/lists", controllers.GetAllTodoList)
