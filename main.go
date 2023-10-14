@@ -21,7 +21,7 @@ func main() {
 	config.LoadEnv()
 	config.InitDB()
 	e := echo.New()
-	e.Pre(middleware.RemoveTrailingSlash())
+	e.Pre(middleware.AddTrailingSlash())
 	routes.TodoListRoutes(e)
 	e.Logger.Fatal(e.Start(":" + getPort()))
 }
