@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func CreateTodoList(c echo.Context) error {
+func CreateTodoListController(c echo.Context) error {
 	var todoRequest models.TodoList
 	c.Bind(&todoRequest)
 
@@ -29,10 +29,10 @@ func CreateTodoList(c echo.Context) error {
 	})
 }
 
-func GetAllTodoList(c echo.Context) error {
+func GetAllTodoListController(c echo.Context) error {
 	var lists []models.TodoList
 
-	err := repositories.GetTodoList(&lists)
+	err := repositories.GetAllTodoLists(&lists)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, models.Response{
@@ -44,8 +44,30 @@ func GetAllTodoList(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, models.Response{
-		Message: "Get Data List Successfully!",
+		Message: "Get all data list successfully!",
 		Status:  http.StatusOK,
 		Data:    lists,
+	})
+}
+
+func GetTodoListController(c echo.Context) error {
+	list := models.TodoList{}
+	c.Bind(&list)
+
+	err := repositories.GetTodoList(&list)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, models.Response{
+			Message: err.Error(),
+			Status:  http.StatusInternalServerError,
+			Data:    nil,
+		})
+
+	}
+
+	return c.JSON(http.StatusOK, models.Response{
+		Message: "Get data list successfully!",
+		Status:  http.StatusOK,
+		Data:    list,
 	})
 }
