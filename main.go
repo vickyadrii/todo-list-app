@@ -9,7 +9,11 @@ import (
 )
 
 func getPort() string {
-	port := os.Getenv("APPPORT")
+	port := os.Getenv("PORT")
+	if port == "" {
+		// Default to port 8080 if PORT is not set
+		port = "8080"
+	}
 	return port
 }
 
