@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	config.LoadEnv()
+	// config.LoadEnv()
 	config.InitDB()
 	e := echo.New()
 	routes.TodoListRoutes(e)
