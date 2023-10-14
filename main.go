@@ -6,6 +6,7 @@ import (
 	"todo-list-app/routes"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func getPort() string {
@@ -20,6 +21,7 @@ func main() {
 	config.LoadEnv()
 	config.InitDB()
 	e := echo.New()
+	e.Pre(middleware.AddTrailingSlash())
 	routes.TodoListRoutes(e)
-	e.Logger.Fatal(e.Start(":" + getPort())) 
+	e.Logger.Fatal(e.Start(":" + getPort()))
 }
