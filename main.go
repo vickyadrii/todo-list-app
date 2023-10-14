@@ -18,5 +18,6 @@ func main() {
 	config.InitDB()
 	e := echo.New()
 	routes.TodoListRoutes(e)
-	e.Logger.Fatal(e.Start(":" + getPort()))
+	// e.Logger.Fatal(e.Start(":" + getPort()))
+	e.Start(":8000")
 }
