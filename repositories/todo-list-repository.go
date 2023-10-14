@@ -40,3 +40,12 @@ func UpdateTodoList(list *models.TodoList) error {
 	}
 	return nil
 }
+
+func DeleteTodoList(list *models.TodoList, id string) error {
+    result := config.DB.Delete(&list, id)
+
+    if result.Error != nil {
+        return result.Error
+    }
+    return nil
+}

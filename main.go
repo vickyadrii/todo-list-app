@@ -11,6 +11,6 @@ func main() {
 	config.LoadEnv()
 	config.InitDB()
 	e := echo.New()
-	routes.InitRoutes(e)
+	routes.TodoListRoutes(e)
 	e.Logger.Fatal(e.Start(":8000"))
 }

@@ -92,3 +92,22 @@ func UpdateTodoListController(c echo.Context) error {
 		Data:    list,
 	})
 }
+
+func DeleteTodoListController(c echo.Context) error {
+	id := c.Param("id")
+
+	err := repositories.DeleteTodoList(&models.TodoList{}, id)
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, models.Response{
+			Message: err.Error(),
+			Status:  http.StatusInternalServerError,
+			Data:    nil,
+		})
+	}
+
+	return c.JSON(http.StatusOK, models.Response{
+		Message: "Delete data successfully!",
+		Status:  http.StatusOK,
+	})
+}
