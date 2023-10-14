@@ -6,7 +6,6 @@ import (
 	"todo-list-app/repositories"
 
 	"github.com/labstack/echo/v4"
-	"gorm.io/gorm"
 )
 
 func CreateTodoListController(c echo.Context) error {
@@ -16,9 +15,9 @@ func CreateTodoListController(c echo.Context) error {
 	err := repositories.AddTodoList(&todoRequest)
 
 	if err != nil {
-		return c.JSON(http.StatusNotFound, models.Response{
+		return c.JSON(http.StatusInternalServerError, models.Response{
 			Message: err.Error(),
-			Status:  http.StatusNotFound,
+			Status:  http.StatusInternalServerError,
 			Data:    nil,
 		})
 	}
@@ -100,13 +99,6 @@ func DeleteTodoListController(c echo.Context) error {
 	err := repositories.DeleteTodoList(&models.TodoList{}, id)
 
 	if err != nil {
-		if err == gorm.ErrRecordNotFound {
-			return c.JSON(http.StatusInternalServerError, models.Response{
-				Message: err.Error(),
-				Status:  http.StatusInternalServerError,
-				Data:    nil,
-			})
-		}
 		return c.JSON(http.StatusInternalServerError, models.Response{
 			Message: err.Error(),
 			Status:  http.StatusInternalServerError,

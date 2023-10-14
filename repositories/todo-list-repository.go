@@ -46,10 +46,10 @@ func DeleteTodoList(list *models.TodoList, id string) error {
 	if err != nil {
 		return err
 	}
-
 	err = config.DB.Delete(&list, id).Error
 
 	if err != nil {
+
 		return err
 	}
 	return nil
