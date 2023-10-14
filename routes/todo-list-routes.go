@@ -12,6 +12,7 @@ func InitRoutes(e *echo.Echo) {
 		Format: "method=${method}, uri=${uri}, status=${status}\n",
 	}))
 	eAuth := e.Group("")
-	eAuth.POST("/lists", controllers.CreateTodoList)
-	eAuth.GET("/lists", controllers.GetAllTodoList)
+	eAuth.POST("/lists", controllers.CreateTodoListController)
+	eAuth.GET("/lists", controllers.GetAllTodoListController)
+	eAuth.GET("lists/:id", controllers.GetTodoListController)
 }
