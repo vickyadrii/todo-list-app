@@ -15,4 +15,5 @@ func InitRoutes(e *echo.Echo) {
 	eAuth.POST("/lists", controllers.CreateTodoListController)
 	eAuth.GET("/lists", controllers.GetAllTodoListController)
 	eAuth.GET("lists/:id", controllers.GetTodoListController)
+	eAuth.PUT("/lists/:id", controllers.UpdateTodoListController)
 }
