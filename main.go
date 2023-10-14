@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"todo-list-app/config"
+	"todo-list-app/routes"
+
+	"github.com/labstack/echo/v4"
+)
 
 func main() {
-    fmt.Println("Todo list app")
+	config.LoadEnv()
+	config.InitDB()
+	e := echo.New()
+	routes.InitRoutes(e)
+	e.Logger.Fatal(e.Start(":8000"))
 }
