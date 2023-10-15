@@ -17,7 +17,7 @@ func getPort() string {
 }
 
 func main() {
-	config.LoadEnv()
+	// config.LoadEnv()
 	config.InitDB()
 	e := echo.New()
 	// e.Pre(middleware.AddTrailingSlash())
