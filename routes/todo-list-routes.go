@@ -11,6 +11,7 @@ func TodoListRoutes(e *echo.Echo) {
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 		Format: "method=${method}, uri=${uri}, status=${status}\n",
 	}))
+	e.GET("/", controllers.GetBaseUrlController)
 	e.POST("/lists", controllers.CreateTodoListController)
 	e.GET("/lists", controllers.GetAllTodoListController)
 	e.GET("lists/:id", controllers.GetTodoListController)
